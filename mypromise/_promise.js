@@ -120,6 +120,7 @@ function tryCallOne(fn, a) {
 }
 
 
+//demo
 
 var p2 = new Promise(function (resolve,reject) {
     resolve(1);

@@ -1,4 +1,3 @@
-# FOR WORK
+## mini-promise
 
-## From 2016-10-19 
-
+### promise的实现原理
