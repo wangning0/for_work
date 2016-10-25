@@ -2,6 +2,11 @@
  * Created by wangning on 2016/10/25.
  */
 
+/*
+*   co模块的缺点在于，里面只能是thunk函数或者是Promise对象！！
+* */
+
+
 /**
  * slice() reference.
  */
@@ -14,45 +19,17 @@ var slice = Array.prototype.slice;
 
 module.exports = co['default'] = co.co = co;
 
-/**
- * Wrap the given generator `fn` into a
- * function that returns a promise.
- * This is a separate function so that
- * every `co()` call doesn't create a new,
- * unnecessary closure.
- *
- * @param {GeneratorFunction} fn
- * @return {Function}
- * @api public
- */
-
-co.wrap = function (fn) {
-    createPromise.__generatorFunction__ = fn;
-    return createPromise;
-    function createPromise() {
-        return co.call(this, fn.apply(this, arguments));
-    }
-};
-
-/**
- * Execute the generator function or a generator
- * and return a promise.
- *
- * @param {Function} fn
- * @return {Promise}
- * @api public
- */
 
 function co(gen) {
     var ctx = this;
-    var args = slice.call(arguments, 1);
+    var args = slice.call(arguments, 1); //默认第一个参数是generator函数
 
     // we wrap everything in a promise to avoid promise chaining,
     // which leads to memory leak errors.
     // see https://github.com/tj/co/issues/180
     return new Promise(function(resolve, reject) {
-        if (typeof gen === 'function') gen = gen.apply(ctx, args);
-        if (!gen || typeof gen.next !== 'function') return resolve(gen);
+        if (typeof gen === 'function') gen = gen.apply(ctx, args); //判断gen是不是generator函数
+        if (!gen || typeof gen.next !== 'function') return resolve(gen); //gen不是promise对象
 
         onFulfilled();
 
@@ -62,7 +39,7 @@ function co(gen) {
          * @api private
          */
 
-        function onFulfilled(res) {
+        function onFulfilled(res) { //成功则执行该处代码
             var ret;
             try {
                 ret = gen.next(res);
@@ -79,7 +56,7 @@ function co(gen) {
          * @api private
          */
 
-        function onRejected(err) {
+        function onRejected(err) { //失败则执行该处代码
             var ret;
             try {
                 ret = gen.throw(err);
@@ -98,10 +75,10 @@ function co(gen) {
          * @api private
          */
 
-        function next(ret) {
-            if (ret.done) return resolve(ret.value);
-            var value = toPromise.call(ctx, ret.value);
-            if (value && isPromise(value)) return value.then(onFulfilled, onRejected);
+        function next(ret) { //自执行generator函数核心代码
+            if (ret.done) return resolve(ret.value); //如果yield已经完成则执行resolve
+            var value = toPromise.call(ctx, ret.value);//将上一个yield所返回的值变成promise对象
+            if (value && isPromise(value)) return value.then(onFulfilled, onRejected);//判断是否为promise对象
             return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, '
                 + 'but the following object was passed: "' + String(ret.value) + '"'));
         }
@@ -116,7 +93,7 @@ function co(gen) {
  * @api private
  */
 
-function toPromise(obj) {
+function toPromise(obj) { //转化成promise对象
     if (!obj) return obj;
     if (isPromise(obj)) return obj;
     if (isGeneratorFunction(obj) || isGenerator(obj)) return co.call(this, obj);
@@ -198,7 +175,7 @@ function objectToPromise(obj){
  * @api private
  */
 
-function isPromise(obj) {
+function isPromise(obj) { //判断是否为promise对象
     return 'function' == typeof obj.then;
 }
 
@@ -240,3 +217,19 @@ function isGeneratorFunction(obj) {
 function isObject(val) {
     return Object == val.constructor;
 }
+
+
+//demo
+var fs = require('fs');
+function readFile(path) {
+    return function (cb) {
+        fs.readFile(path,'utf-8',cb);
+    }
+}
+
+co(function *() {
+    var dataA = yield readFile('./a.js');
+    console.log(dataA);
+}).then(function () {
+    console.log(1);
+})
