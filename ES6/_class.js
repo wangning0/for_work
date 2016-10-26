@@ -166,12 +166,10 @@
 *       2. 子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性
 * */
 
-class A {
+//class A {}
+//class B extends A {}
 
-}
-class B extends A {
+//console.log(B.__proto__ == A);                     //构造函数继承
+//console.log(B.prototype.__proto__ == A.prototype); //方法继承
 
-}
 
-console.log(B.__proto__ == A);                     //构造函数继承
-console.log(B.prototype.__proto__ == A.prototype); //方法继承
