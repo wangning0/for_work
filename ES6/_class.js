@@ -172,4 +172,104 @@
 //console.log(B.__proto__ == A);                     //构造函数继承
 //console.log(B.prototype.__proto__ == A.prototype); //方法继承
 
+// class Animal {
+//     constructor(species, name) {
+//         this.species = species;
+//         this.name = name;
+//     }
+//     getName() {
+//         return function () {
+//             console.log(this);  //undefined
+//         }
+//     }
+// }
 
+// class Animal {
+//     constructor(species, name) {
+//         this.species = species;
+//         this.name = name;
+//     }
+//     getName() {
+//         return () => {
+//             console.log(this.name);
+//         }
+//    }
+// }
+
+// const dog = new Animal('dog', 'xh');
+// dog.getName()();
+
+
+// class Point2D {
+//     constructor(x, y) {
+//         this.x = x;
+//         this.y = y;
+//     }
+//     toString() {
+//         return `(${this.x}, ${this.y})`
+//     }
+// }
+//
+// class Point3D extends Point2D {
+//     constructor(x, y, z) {
+//         super(x ,y);
+//         this.z = z;
+//     }
+//
+//     toString(x, y, z) {
+//         return `(${this.x}, ${this.y}, ${this.z})`;
+//     }
+// }
+//
+// var a = new Point3D(1, 2, 3);
+// console.log(a.toString())
+
+// 如果一个子类继承了一个父类，那么在子类的constructor构造函数中必须使用super函数调用父类的构造函数后才能在子类的constructor构造函数中使用
+// this,否则会报出this is not defined的错误
+
+//Getter/Setter 元编程的概念，特点在于 允许程序可以对运行时的对象进行读取和操作，从而使程序可以脱离代码从字面上为程序定义的一些限制，有了对对象的更高操作权限
+
+// const Counter = {
+//     _count: 1,
+//     get value() {
+//         return this._count++;
+//     }
+// };
+// console.log(Counter.value);
+// console.log(Counter.value);
+// console.log(Counter.value);
+//
+// const List = {
+//     _array: [],
+//     set new(value) {
+//         this._array.push(value)
+//     },
+//     get last() {
+//         return this._array[0];
+//     },
+//     get value() {
+//         return this._array;
+//     }
+// };
+//
+// List.new = 4;
+// List.new = 5;
+// List.new = 6;
+// console.log(List.last);
+// console.log(List.value);
+
+// class与Getter/Setter在类中的使用，配合元编程
+
+class Point2D {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    get d() {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
+};
+
+var p = new Point2D(3, 4);
+console.log(p.d);

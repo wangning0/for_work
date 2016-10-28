@@ -228,8 +228,10 @@ function readFile(path) {
 }
 
 co(function *() {
-    var dataA = yield readFile('./a.js');
+    var dataA = yield readFile('./isPromise.js');
     console.log(dataA);
+    var dataB = yield readFile('./README.md');
+    console.log(dataB);
 }).then(function () {
     console.log(1);
 })

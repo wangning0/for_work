@@ -52,5 +52,5 @@ const resdata = res.map(
     ({name, lover, age, info: {sex: s}}) => ({
         name, lover, s
     })
-)
+);
 console.log(resdata);
