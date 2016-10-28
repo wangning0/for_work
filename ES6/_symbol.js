@@ -21,4 +21,5 @@ function fn2(_symbol) {
 }
 
 fn2(symbol);
+
 console.log(symbol);
