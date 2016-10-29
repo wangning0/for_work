@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .Grid {
+            display: flex;
+        }
+        .Grid-cell {
+            flex: 1;
+            background-color: red;
+        }
+        .Grid-cell.u-lof3 {
+            flex: 0 0 33.33333%;
+            background-color: black;
+        }
+        .Grid-cell.u-lof4 {
+            flex: 0 0 25%;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!--平均分布的网络布局-->
+    <!--<div class="Grid">-->
+        <!--<div class="Grid-cell">hello</div>-->
+        <!--<div class="Grid-cell">hello</div>-->
+        <!--<div class="Grid-cell">hello</div>-->
+    <!--</div>-->
+    <!--百分比布局，某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间-->
+    <div class="Grid">
+        <div class="Grid-cell u-lof4">...</div>
+        <div class="Grid-cell">...</div>
+        <div class="Grid-cell u-lof3">...</div>
+    </div>
+</body>
+</html>
