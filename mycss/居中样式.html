@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>各种居中的方法</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    /*
+      第一种使用绝对定位实现居中的方法
+    .parent {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      position: relative;
+    }
+    .child {
+      width: 100px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+      background: black;
+      height: 100px;
+    }*/
+
+    /*第二种使用绝对定位实现居中的方法 可是直接IE9+,如果不定义元素的宽和高的话，那么它的宽就会有left和right的值来决定，高会由top、bottom决定，如果同时改变四个属性的值，可以让元素往某个方向偏移*/
+    .parent {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      position: relative;
+    }
+    .child{
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      margin: auto;
+      background: black;
+    }
+    .parent_5 {
+      width: 300px;
+      height: 200px;
+      border: 1px solid red;
+    }
+    .wraper_5 {
+      float: left;
+      position: relative;
+      left: 50%;
+      clear: both;
+    }
+    .child_5 {
+      border: 1px solid blue;
+      position: relative;
+      left: -50%;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    1. 把margin设为auto， 此方法只能进行水平的居中，且对浮动元素或绝对定位元素无效
+    2. text-align:center 只能对图片 文字 按钮等行内元素（display:inline/display:inline-block)进行水平居中
+    3. 使用line-height 让单行的文字垂直居中，把文字的line-height 设为文字父容器的高度， 适用于只有一行文字的情况
+    4. 使用display：table-cell来居中，对于那些不是表格的元素，我们可以通过display:table-cell来把它模拟成一个表格单元格，这样就可以利用表格拿很方便的居中特性了。
+    5. 使用绝对定位来进行居中,此方法只适用于那些我们已经知道它们的宽度或高度的元素
+    6. 使用浮动配合相对定位来进行水平居中，此方法也是关于浮动元素怎么水平居中的解决方法，并且我们不需要知道需要居中的元素的宽度
+   -->
+
+   <!-- 第5个方法对应的demo -->
+    <div class="parent">
+      <div class="child"></div>
+    </div>
+
+    <!-- 第6个方法对应的demo -->
+    <div class="parent_5">
+      <div class="wraper_5">
+        <div class="child_5">我水平居中了</div>
+      </div>
+      <div class="wraper_5">
+        <div class="child_5">我水平居中了啊</div>
+      </div>
+      <div class="wraper_5">
+        <div class="child_5">我水平居中了啊啊</div>
+      </div>
+    </div>
+</body> 
+</html>
