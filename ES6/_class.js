@@ -273,3 +273,48 @@ class Point2D {
 
 var p = new Point2D(3, 4);
 console.log(p.d);
+
+/*
+*   class的静态方法
+*
+*       如果在类的一个方法前面加上了static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为"静态方法"
+*
+*       父类的静态方法，可以被子类继承
+* */
+
+// class Foo {
+//     static classMethod() {
+//         console.log('hello')
+//     }
+// }
+//
+// Foo.classMethod();
+//
+// const foo = new Foo();
+// //foo.classMethod();  //foo.classMethod is not a function
+//
+// class Bar extends Foo {
+//     static barclassMethod () {
+//         console.log('bar')
+//     }
+// }
+//
+// Bar.classMethod();
+// Bar.barclassMethod();
+
+/*
+*
+*   class 的静态属性，ES6规定Class内部只有静态方法，没有静态属性
+*
+* */
+
+//唯一的一种写法定义class的静态属性
+
+
+class Foo {
+}
+
+Foo.prop = 1;
+console.log(Foo.prop);
+
+
