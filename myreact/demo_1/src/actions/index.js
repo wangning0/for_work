@@ -43,7 +43,7 @@ const shouldFetchPosts = (state, reddit) => {
   return posts.didInvalidate
 }
 
-export const fetchPostsIfNeed = reddit => (dispath, getState) => {
+export const fetchPostsIfNeed = reddit => (dispatch, getState) => {
   if(shouldFetchPosts(getState(), reddit)) {
     return dispatch(fetchPosts(reddit))
   }

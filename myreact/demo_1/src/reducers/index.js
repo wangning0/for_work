@@ -1,4 +1,4 @@
-import { combineReducer } from 'redux'
+import { combineReducers } from 'redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
@@ -57,7 +57,9 @@ const postsByReddit = (state = {}, action) => {
   }
 }
 
-const rootReducer = combineReducer({
+const rootReducer = combineReducers({
   postsByReddit,
-  selectdReddit
+  selectedReddit
 })
+
+export default rootReducer

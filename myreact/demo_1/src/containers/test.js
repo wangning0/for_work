@@ -14,12 +14,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedReddit } = this.props;
+    const { dispatch, selectedReddit } = this.props
     dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.selectedReddit !== this.props.selectedReddit) {
+    if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps
       dispatch(fetchPostsIfNeed(selectedReddit))
     }
@@ -44,18 +44,18 @@ class App extends Component {
       <div>
         <Picker value={selectedReddit}
                 onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]}/>
+                options={[ 'reactjs', 'frontend' ]} />
         <p>
           {lastUpdated &&
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()},
-              {'  '}
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+              {' '}
             </span>
           }
           {!isFetching &&
             <a href="#"
                onClick={this.handleRefreshClick}>
-               Refresh
+              Refresh
             </a>
           }
         </p>
@@ -71,21 +71,21 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedReddit, postsByReddit } = state;
+  const { selectedReddit, postsByReddit } = state
   const {
     isFetching,
     lastUpdated,
-    items: posts //取别名
+    items: posts
   } = postsByReddit[selectedReddit] || {
-    isFetching: false,
+    isFetching: true,
     items: []
   }
 
   return {
     selectedReddit,
+    posts,
     isFetching,
-    lastUpdated,
-    posts
+    lastUpdated
   }
 }
 
