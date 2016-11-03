@@ -317,4 +317,34 @@ class Foo {
 Foo.prop = 1;
 console.log(Foo.prop);
 
+/*
+*   ES7 对于静态属性的提案
+* */
 
+// 类的实例属性可以用等式
+
+class MyClass {
+    myProp = 1;
+    constructor() {
+        console.log(this.myProp); //在类的实例上，可以读取这个属性
+    }
+}
+//以前我们定义实例属性，只能写在类的constructor方法里
+
+class ReactCounter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0
+        }
+    }
+}
+
+//new style
+class ReactCounter extends React.Component {
+    state = {
+        count: 0
+    }
+}
+
+//类的静态属性 ，在属性名前加上static
