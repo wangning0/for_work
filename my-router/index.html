@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Router</title>
+</head>
+<body>
+  <ul>
+    <li><a href="#/blue">blue</a></li>
+    <li><a href="#/green">green</a></li>
+    <li><a href="#/black">black</a></li>
+  </ul>
+</body>
+<script>
+  var Router = function() {
+    this.routers = {};
+    this.currentUrl = '';
+  }
+  Router.prototype.route = function(path, callback) {
+    this.routers[path] = callback || function() {};
+  }
+  Router.prototype.refresh = function() {
+    this.currentUrl = window.location.hash.slice(1) || '/';
+    this.routers[this.currentUrl]();
+  }
+  Router.prototype.init = function() {
+    window.addEventListener('load', this.refresh.bind(this), false);
+    window.addEventListener('hashchange', this.refresh.bind(this), false);
+  }
+
+  window.Router = new Router();
+  window.Router.init();
+
+  var content = document.querySelector('body');
+  Router.route('/', function() {
+    changeColor('white');
+  })
+  Router.route('/green', function() {
+    changeColor('green');
+  })
+  Router.route('/blue', function() {
+    changeColor('blue');
+  })
+  Router.route('/black', function() {
+    changeColor('black');
+  })
+
+  function changeColor(color) {
+    content.style.background = color;
+  }
+</script>
+</html>
