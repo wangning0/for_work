@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <button>点我</button>
+  <div id="count"></div>
+</body>
+<script src="http://cdn.bootcss.com/rxjs/5.0.2/Rx.js"></script>
+<script>
+var input = Rx.Observable.fromEvent(document.querySelector('input'), 'keypress');
+// Filter out target values less than 3 characters long
+// input.filter(event => event.target.value.length > 2).subscribe(value => console.log(value));
+
+// Delay the events
+//input.delay(1000)
+  //.subscribe(value => console.log(value));
+
+// Only let through an event every 200 ms
+// input.throttleTime(1000)
+//   .subscribe(value => console.log(value));
+
+// // Let through latest event after 200 ms
+// input.debounceTime(200)
+//   .subscribe(value => console.log(value)); // "o" -200ms-> "d"
+
+// // Stop the stream of events after 3 events
+// input.take(3)
+//   .subscribe(value => console.log(value)); // "hel"
+
+// // Producing values
+
+// // Pass on a new value
+// input.map(event => event.target.value)
+//   .subscribe(value => console.log(value)); // "h"
+
+// // Pass on a new value by plucking it
+// input.pluck('target', 'value')
+//   .subscribe(value => console.log(value)); // "h"
+
+// // Pass the two previous values
+// input.pluck('target', 'value').pairwise()
+//   .subscribe(value => console.log(value)); // ["h", "e"]
+
+// // Only pass unique values through
+// input.pluck('target', 'value').distinct()
+//   .subscribe(value => console.log(value)); // "helo wrd"
+
+// // Do not pass repeating values through
+// input.pluck('target', 'value').distinctUntilChanged()
+//   .subscribe(value => console.log(value)); // "helo world"
+
+// // 
+var button = document.querySelector('button');
+Rx.Observable.fromEvent(button, 'click')
+  // scan (reduce) to a stream of counts
+  .scan(count => count + 1, 0)
+  // Set the count on an element each time it changes
+  .subscribe(count => document.querySelector('#count').innerHTML = count);
+</script>
+</html>
