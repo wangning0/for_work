@@ -15,3 +15,23 @@ function createThunkMiddleware(extraArgument) {
   但是会造成有很多的模版代码的重复
   
 */
+
+// 使用 
+
+function getWeather(url, params) {
+  return (dispatch, getState) => {
+    fetch(url, params)
+      .then(result => {
+        dispatch({
+          type: 'GET_WEATHER_SUCCESS',
+          playload: result
+        })
+      })
+      .catch( err => {
+        dispatch({
+          type: 'GET_WEATHER_ERROR',
+          playload: err
+        })
+      })
+  }
+}
