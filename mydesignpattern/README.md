@@ -8,3 +8,6 @@
 * [代理模式](./Proxy.js)
 * [发布订阅模式](./SubscribePublish.js)
 * [模版方法模式](./Template.js)
+* [适配器模式](./Adapter.js)
+* [享元模式](./Flyweight.js)
+* [职责链模式](./CoR.js)
