@@ -12,3 +12,4 @@
 * [享元模式](./Flyweight.js)
 * [职责链模式](./CoR.js)
 * [中介者模式](./Intermediary.js)
+* [状态模式](./State.js)
