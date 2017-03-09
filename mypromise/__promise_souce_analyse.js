@@ -119,6 +119,7 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
     }
     var res = new Promise(noop);
     handle(this, new Handler(onFulfilled, onRejected, res));
+    console.log(this._deferreds, this._deferreds.onFulfilled.toString());
     return res;
 };
 
@@ -265,3 +266,14 @@ function doResolve(fn, promise) { //初始化在开始的实例化中的promise�
         reject(promise, LAST_ERROR);
     }
 }
+
+var a = new Promise(function(resolve) {
+    setTimeout(function() {
+        resolve(2)
+    }, 1000);
+})
+a.then(function() {
+    console.log(1);
+}).then(function() {
+    console.log(2);
+})

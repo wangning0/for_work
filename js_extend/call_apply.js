@@ -5,6 +5,8 @@
 
 // 第一种构造函数绑定
 
+
+
 function Animal() {
     this.species = "动物";
 }

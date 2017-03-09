@@ -1,0 +1,14 @@
+{
+  "name": "mypromise",
+  "version": "1.0.0",
+  "description": "### promise的实现原理",
+  "main": "__promise_souce_analyse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "asap": "^2.0.5"
+  }
+}
