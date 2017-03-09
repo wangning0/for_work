@@ -142,3 +142,20 @@
         }
     }
  */
+
+/**
+ * Redux-saga 用来做SSR时
+ *  // server/server.jsx
+    // When first render is done and all saga's are run, render again with updated store.
+    store.runSaga(rootSaga).done.then(() => {
+        const markup = renderToString(rootComp);
+        const html = renderHTML(markup, store);
+        const result = context.getResult();
+        res.status(200).send(html);
+    });
+    // Do first render, starts initial actions.
+    renderToString(rootComp);
+    // When the first render is finished, send the END action to redux-saga.
+    store.close();
+ * 
+ */
