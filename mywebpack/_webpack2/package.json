@@ -1,0 +1,15 @@
+{
+  "name": "webpack_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rm -fr ./dist && webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "moment": "^2.17.1",
+    "webpack": "^2.2.1"
+  }
+}
