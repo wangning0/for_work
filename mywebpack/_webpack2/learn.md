@@ -75,7 +75,7 @@
 
         ```
         use: [{
-            loader: 'style-loader'
+            loader: 'style-loader'i
         }, {
             loader: 'css-loader',
             options: {
